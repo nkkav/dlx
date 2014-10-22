@@ -1,0 +1,63 @@
+/***************************************************************/
+/*  File       : dlx.ac
+ *  Description: Storage modules.                         
+ *  Author     : Nikolaos Kavvadias <nikos@nkavvadias.com>
+ *
+ *  Copyright (C) 2005, 2006, 2007, 2008, 2009, 2010,
+ *                2011, 2012, 2013, 2014 Nikolaos Kavvadias
+ *
+ *  Author affiliation:
+ *    Dr. Nikolaos Kavvadias
+ *    Independent Consultant -- Research Scientist
+ *    Kornarou 12 Rd., Nea Ampliani,
+ *    35100 Lamia, Greece
+ *                                                             
+ *  Contact information for the ArchC team:                     
+ *    The ArchC Team                                              
+ *    Computer Systems Laboratory (LSC)                           
+ *    IC-UNICAMP                                                  
+ *    http://www.lsc.ic.unicamp.br                                
+ */
+/***************************************************************/
+
+AC_ARCH(dlx)
+{
+//  ac_cache     DM:4M;
+//  ac_mem       PM:256k;
+  // "l2" configuration 
+  ac_mem     MEM:4M;
+//  ac_icache  IC("2w", 512, 4, "random", "wt", "wal");
+//  ac_dcache  DM("fully", 128, 2, "lru", "wb", "wal");
+//  ac_cache   L2("dm", 1024, 8, "wt", "wal");
+  // "wb" configuration
+//  ac_mem       MEM:4M;
+//  ac_icache  IC("dm", 128, 2, "wt", "wal");
+//  ac_dcache  DM("fully", 256, 4, "random", "wb", "wal");
+  // "wt" configuration
+//  ac_mem       MEM:4M;
+//  ac_icache  IC("dm", 128, 1, "wt", "wal");
+//  ac_dcache  DM("dm", 256, 4, "wt", "wal");
+
+  ac_regbank RB:32;
+  ac_regbank PRB:1024;   // performance counters
+  ac_reg     BBNUM;      // number of BBs in current program
+
+  ac_wordsize 32;
+
+  ARCH_CTOR(dlx) 
+  {
+    ac_isa("dlx_isa.ac");
+    set_endian("big");
+    // "l2" configuration
+//    IC.bindsTo(L2);
+//    DM.bindsTo(L2);
+//    L2.bindsTo(MEM);
+    // "wb" configuration
+//    IC.bindsTo(L2);
+//    DM.bindsTo(L2);
+//    L2.bindsTo(MEM);
+    // "wt" configuration
+//    IC.bindsTo(MEM);
+//    DM.bindsTo(MEM);
+  };
+};

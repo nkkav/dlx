@@ -1,0 +1,77 @@
+//****  This is the configuration file for the branch predictor option within ArchC **** 
+//****    as well as for the external ArchC branch prediction simulator "acbpsim"   ****
+//
+// select the branch predictor type and configure it in the appropriate section  
+// available algorithms: bimodal, local, gshare, tournament, correlate, ogehl, 
+// ipl, atemplate, trace_binary, trace_ascii
+// with the trace option an appropriate trace file is created, which can be evaluated with "acbpsim"
+// "atemplate" is a skeleton code to implement your own prediction algorithm
+
+// this branch predictor will be used in ArchC or acbpsim respectively
+used_branch_predictor ( gshare ) ;
+
+// change the configuration or initialisation values only under consideration of their limits !
+
+config_section (bimodal)
+// one level per adress (local) predictor - bimodal
+{
+SCT_INIT = 3;           // strong not taken, 0 <= SCT_INIT <= 3
+SCT_SIZE = 2048;	//SCT means saturation counter table with 2 bit entries
+}
+
+
+config_section (gshare)
+// 2 level global predictor - gshare - (GAg)
+{
+BHR_LENGTH = 12;	//branch history register in bit
+SCT_INIT = 0;           // strong not taken, 0 <= SCT_INIT <= 3
+BHR_INIT = 0;	        //no history
+}
+
+config_section (local)
+//2 level local branch predictor (PAg)
+{
+LHR_WIDTH = 8;      //width of the local history register in bit
+LHT_SIZE = 1024;     // size of the local history table
+LHT_INIT = 0;        //no history
+SATCT_INIT = 0 ;     //init value of saturation counter table
+}
+	
+	
+config_section (tournament)
+// is composed of a PAg and a GAg
+{
+//-----------------global--------------------------
+BHR_LENGTH = 11;
+SCT_INIT = 0;      // strong not taken  
+BHR_INIT = 0;      //no history
+
+//--------------2 bit local table ----------------------
+LHR_WIDTH = 8;     //width of the local history
+LHT_SIZE = 1024;
+LHT_INIT = 0; 	   //no history
+SATCT_INIT = 0 ;   // strong not taken  
+	
+//-----------------2 bit chooser table------------------------
+CHT_SIZE = 4096;
+CHT_INIT = 0;      // take the local  
+}
+	
+config_section (correlate)
+// 2 level dynamic (M,N) correlating predictor - GAp
+{
+GHR_LENGTH = 2 ;    //global history shift register in bits (M) - defines the number of tables
+USED_ADDRESS_BITS = 12;	//this defines the size of the tables
+SCT_INIT = 0 ;
+GHR_INIT = 0 ;
+}
+
+config_section (ogehl)
+{
+SCT_INIT = 0;
+}
+	
+config_section (ipl)
+{
+SCT_INIT = 0;
+}

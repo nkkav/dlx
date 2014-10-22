@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
+<title>dlx user manual</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id$
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="dlx-user-manual">
+<h1 class="title">dlx user manual</h1>
+
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr><td><strong>Title</strong></td>
+<td>dlx (DLX functional model for ArchC)</td>
+</tr>
+<tr><td><strong>Author</strong></td>
+<td>Nikolaos Kavvadias 2005, 2006, 2007, 2008, 2009,
+2010, 2011, 2012, 2013, 2014</td>
+</tr>
+<tr><td><strong>Contact</strong></td>
+<td><a class="reference external" href="mailto:nikos&#64;nkavvadias.com">nikos&#64;nkavvadias.com</a></td>
+</tr>
+<tr><td><strong>Website</strong></td>
+<td><a class="reference external" href="http://www.nkavvadias.com">http://www.nkavvadias.com</a></td>
+</tr>
+<tr><td><strong>Release Date</strong></td>
+<td>22 October 2014</td>
+</tr>
+<tr><td><strong>Version</strong></td>
+<td>0.1.0</td>
+</tr>
+<tr><td><strong>Rev. history</strong></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td><strong>v0.1.0</strong></td>
+<td><p class="first">2014-10-22</p>
+<ul class="last simple">
+<li>Updated documentation as README.rst.</li>
+<li>Changed <tt class="docutils literal">func</tt> from <tt class="docutils literal">0x06</tt> to <tt class="docutils literal">0x09</tt> for
+<tt class="docutils literal">multu</tt>.</li>
+<li>Removed <tt class="docutils literal">sequ</tt>, <tt class="docutils literal">sneu</tt>.</li>
+<li>Changed <tt class="docutils literal">func</tt> for <tt class="docutils literal">div</tt> (<tt class="docutils literal">0x19</tt>) and <tt class="docutils literal">divu</tt>
+<tt class="docutils literal">0x1A</tt>.</li>
+<li>Newly added files: <tt class="docutils literal">defines_gdb</tt>, <tt class="docutils literal">modifiers</tt>.</li>
+<li>Updated <tt class="docutils literal">dlx_opcode_map.xls</tt>.</li>
+</ul>
+</td>
+</tr>
+<tr><td><strong>v0.0.4</strong></td>
+<td><p class="first">2006-11-15</p>
+<ul class="last simple">
+<li>Added pcount instruction for basic-block profiling.</li>
+</ul>
+</td>
+</tr>
+<tr><td><strong>v0.0.3</strong></td>
+<td><p class="first">2006-07-01</p>
+<ul class="last simple">
+<li>Corrected optimization instruction methods for <tt class="docutils literal">j</tt>,
+<tt class="docutils literal">jal</tt>, <tt class="docutils literal">jr</tt>, <tt class="docutils literal">jalr</tt>, <tt class="docutils literal">beqz</tt>, <tt class="docutils literal">bnez</tt>.</li>
+<li>Alternate behaviors for <tt class="docutils literal">div</tt>, <tt class="docutils literal">divu</tt> added.</li>
+<li>Fixed copyright notations to manually-written files:</li>
+<li>(<tt class="docutils literal">*.ac, <span class="pre">dlx-isa.cpp,</span> dlx_syscall.cpp</tt>,
+<tt class="docutils literal">dlx_gdb_funcs.cpp</tt>).</li>
+<li>Behaviors for <tt class="docutils literal">addui</tt>, <tt class="docutils literal">subui</tt> have been corrected.</li>
+</ul>
+</td>
+</tr>
+<tr><td><strong>v0.0.2</strong></td>
+<td><p class="first">2006-01-01</p>
+<ul class="last simple">
+<li>Changed behavior of <tt class="docutils literal">j</tt>, <tt class="docutils literal">jal</tt>, <tt class="docutils literal">beqz</tt>, <tt class="docutils literal">bnez</tt>
+according to what is expected by the binutils DLX port.</li>
+<li>Fixed issue with <tt class="docutils literal">jr</tt> instruction.</li>
+<li>New encoding for the <tt class="docutils literal">halt</tt> instruction.</li>
+<li>Changed register notation to comply to DLX conventions:
+(<tt class="docutils literal"><span class="pre">r0-r31</span></tt>) and alternate notation:
+(<tt class="docutils literal"><span class="pre">zero,at,v0-v1,a0-a3,t0-t9,s0-s7</span></tt>,
+<tt class="docutils literal"><span class="pre">k0-k1,gp,sp,fp,ra</span></tt>)</li>
+<li>Both prefixed (by a dollar sign) and unprefixed
+symbolic register names should be accepted.</li>
+<li>Disabled non-standard DLX instructions, along with
+<tt class="docutils literal">mvts</tt>, <tt class="docutils literal">mvfs</tt>.</li>
+<li>The standard <tt class="docutils literal">mult</tt>, <tt class="docutils literal">multu</tt>, <tt class="docutils literal">div</tt>, <tt class="docutils literal">divu</tt>
+opcodes are now used.</li>
+<li>Testsuite directory removed. The <tt class="docutils literal">acstone</tt>
+benchmarks should be used instead for the purpose of
+benchmarking the DLX model.</li>
+</ul>
+</td>
+</tr>
+<tr><td><strong>v0.0.1</strong></td>
+<td><p class="first">2005-12-26</p>
+<ul class="last simple">
+<li>First public version.</li>
+<li>Most integer instruction set functionality has been
+added.</li>
+<li>Very few applications have been tested:<ol class="arabic">
+<li><tt class="docutils literal">fib.s</tt> (generated by <tt class="docutils literal"><span class="pre">dlxgcc-2.7.2.3</span></tt> and
+slightly modified)</li>
+<li><tt class="docutils literal">loadi.s</tt> (tests load immediate
+pseudo-instructions)</li>
+</ol>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="introduction">
+<h1>1. Introduction</h1>
+<p>This is the DLX ArchC (<a class="reference external" href="http://www.archc.org">http://www.archc.org</a>) functional model. This model has
+the system call emulation functions implemented, so it is a good idea to turn on
+the ABI option.</p>
+<p>To use <tt class="docutils literal">acsim</tt>, the interpreted simulator:</p>
+<pre class="literal-block">
+$ acsim dlx.ac [-g -abi -gdb]       # (create the simulator)
+$ make -f Makefile.archc            # (compile)
+$ ./dlx.x --load=&lt;file-path&gt; [args] # (run an application)
+</pre>
+<p>To use <tt class="docutils literal">accsim</tt>, the compiled simulator:</p>
+<pre class="literal-block">
+$ accsim dlx.ac &lt;file-path&gt;         # (create specialized simulator)
+$ make -f Makefile.archc            # (compile)
+$ ./dlx.x [args]                    # (run the application)
+</pre>
+<p>The <tt class="docutils literal">[args]</tt> are optional arguments for the application.</p>
+<p>There are two formats recognized for application &lt;file-path&gt;:</p>
+<ul class="simple">
+<li>ELF binary matching ArchC specifications</li>
+<li>hexadecimal text file for ArchC</li>
+</ul>
+<p>To use <tt class="docutils literal">acasm</tt>, the assembler generator:</p>
+<pre class="literal-block">
+$ asmgen.sh dlx.ac &lt;assembler_name&gt;
+</pre>
+<p>for generating the assembler source files.</p>
+<p>Then, proceed to build it using the GNU autotools:</p>
+<pre class="literal-block">
+$ configure
+$ make all-gas
+$ make install-gas
+</pre>
+</div>
+<div class="section" id="file-listing">
+<h1>2. File listing</h1>
+<p>The <tt class="docutils literal">dlx</tt> distribution includes the following files:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>/dlx</td>
+<td>Top-level directory</td>
+</tr>
+<tr><td>AUTHORS</td>
+<td>List of <tt class="docutils literal">dlx</tt> authors.</td>
+</tr>
+<tr><td>LICENSE</td>
+<td>The modified BSD license governs <tt class="docutils literal">dlx</tt>.</td>
+</tr>
+<tr><td>README.html</td>
+<td>HTML version of README.</td>
+</tr>
+<tr><td>README.pdf</td>
+<td>PDF version of README.</td>
+</tr>
+<tr><td>README.rst</td>
+<td>This file.</td>
+</tr>
+<tr><td>VERSION</td>
+<td>Current version of the project sources.</td>
+</tr>
+<tr><td>bp_conf.ac</td>
+<td>Branch predictor description (only for
+archc-1.5.1.bp2).</td>
+</tr>
+<tr><td>defines_gdb</td>
+<td>Macro definitions for GDB integration.</td>
+</tr>
+<tr><td>dlx.ac</td>
+<td>Register, memory and cache model for <tt class="docutils literal">dlx</tt>.</td>
+</tr>
+<tr><td>dlx_gdb_funcs.cpp</td>
+<td>GDB support for the DLX simulator.</td>
+</tr>
+<tr><td>dlx_isa.ac</td>
+<td>Instruction encodings and assembly formats.</td>
+</tr>
+<tr><td>dlx_opcode_map.vsd</td>
+<td>Incomplete MS Visio drawing of the DLX opcode map.</td>
+</tr>
+<tr><td>dlx_opcode_map.xls</td>
+<td>Excel spreadsheet containing the DLX opcode map.</td>
+</tr>
+<tr><td>dlx_syscall.cpp</td>
+<td>OS call emulation support for DLX.</td>
+</tr>
+<tr><td>dlx-isa.cpp</td>
+<td>Instruction behaviors.</td>
+</tr>
+<tr><td>modifiers</td>
+<td>Instruction encoding and decoding modifiers.</td>
+</tr>
+<tr><td>rst2docs.sh</td>
+<td>Bash script for generating the HTML and PDF versions
+of the documentation (README).</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="general-observations">
+<h1>3. General observations</h1>
+<ol class="arabic simple">
+<li>Some non-classical DLX instructions (available in the DLX binutils target)
+might be added in the future. These are:</li>
+</ol>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal">bswap</tt>  (BSWAPF) --&gt; A byte swap instruction</li>
+<li><tt class="docutils literal">ldstbu</tt> (LSBUOP) --&gt; Atomic load-store byte unsigned</li>
+<li><tt class="docutils literal">ldsthu</tt> (LSHUOP) --&gt; Atomic load-store halfword unsigned</li>
+<li><tt class="docutils literal">ldstw</tt>  (LSWOP)  --&gt; Atomic load-store word</li>
+</ul>
+</blockquote>
+<ol class="arabic simple" start="2">
+<li><tt class="docutils literal">mult</tt>, <tt class="docutils literal">multu</tt>, <tt class="docutils literal">div</tt>, <tt class="docutils literal">divu</tt> instructions have different opcodes
+to the binutils DLX. Also, <tt class="docutils literal">div</tt>, <tt class="docutils literal">divu</tt> produce a single 32-bit result
+(the quotient). Probably, <tt class="docutils literal">rem</tt>, <tt class="docutils literal">remu</tt> instructions will be added to
+produce the remainder of a division. For 64-bit result multiplication maybe
+a good choice is to provide <tt class="docutils literal">multl</tt>, <tt class="docutils literal">multlu</tt> primitives, for which
+results are written in two consecutive registers (integer registers).</li>
+<li>There are no <tt class="docutils literal">HI/LO</tt> registers (I think this is the actual intent in the
+Patterson book).</li>
+<li>Multiplication and division DONNOT use the floating-point register file.
+For this reason, <tt class="docutils literal">mvts</tt>, <tt class="docutils literal">mvfs</tt> instructions are currently
+unimplemented.</li>
+<li>Loading 32-bit constants will be available via appropriate pseudo-
+instructions not requiring the <tt class="docutils literal">HI/LO</tt> registers, and for the following
+formats:</li>
+</ol>
+<div class="line-block">
+<div class="line"><tt class="docutils literal">li&nbsp;&nbsp; %dest, <span class="pre">#hi-16bit-constant,</span> <span class="pre">#lo-16bit-constant</span></tt></div>
+<div class="line"><tt class="docutils literal">li&nbsp;&nbsp; %dest, <span class="pre">#32bit-constant</span></tt></div>
+</div>
+<ol class="arabic simple" start="6">
+<li>For future provision of a coprocessor (maybe this is an overkill for the
+DLX?) some opcodes MIGHT be moved, e.g.:<ul>
+<li>Move opcode(J)=0x02, opcode(JAL)=0x03 to e.g. 0x06,0x07, respectively.
+(PREFERRED)</li>
+<li>Move opcode(BEQZ), opcode(BNEZ) to  0x16, 0x17.</li>
+<li>Then the 0x01-0x04 primary opcodes would be used for 4 optional
+coprocessors.</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+</body>
+</html>
