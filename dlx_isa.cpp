@@ -642,25 +642,25 @@ void ac_behavior( sra )
 //!Instruction slli behavior method.
 void ac_behavior( slli )
 {
-  dbg_printf("slli r%d, r%d, %#x\n", rt, rs, imm & 0x1F);
-  RB[rt] = RB[rs] << (imm & 0x1F);
-  dbg_printf("Result = %#x\n", RB[rt]);
+  dbg_printf("slli r%d, r%d, %#x\n", rd, rt, rs & 0x1F);
+  RB[rd] = RB[rt] << (RB[rs] & 0x1F);
+  dbg_printf("Result = %#x\n", RB[rd]);
 };
 
 //!Instruction srli behavior method.
 void ac_behavior( srli )
 {
-  dbg_printf("srli r%d, r%d, %#x\n", rt, rs, imm & 0x1F);
-  RB[rt] = RB[rs] >> (imm & 0x1F);
-  dbg_printf("Result = %#x\n", RB[rt]);
+  dbg_printf("srli r%d, r%d, %#x\n", rd, rt, rs & 0x1F);
+  RB[rd] = RB[rt] >> (RB[rs] & 0x1F);
+  dbg_printf("Result = %#x\n", RB[rd]);
 };
 
 //!Instruction srai behavior method.
 void ac_behavior( srai )
 {
-  dbg_printf("srai r%d, r%d, %#x\n", rt, rs, imm & 0x1F);
-  RB[rt] = (ac_Sword) RB[rs] >> (imm & 0x1F);
-  dbg_printf("Result = %#x\n", RB[rt]);
+  dbg_printf("srai r%d, r%d, %#x\n", rd, rt, rs & 0x1F);
+  RB[rd] = (ac_Sword) RB[rt] >> (RB[rs] & 0x1F);
+  dbg_printf("Result = %#x\n", RB[rd]);
 };
 
 //!Instruction mult behavior method.

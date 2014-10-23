@@ -24,8 +24,10 @@ AC_ARCH(dlx)
 {
 //  ac_cache     DM:4M;
 //  ac_mem       PM:256k;
+  ac_mem       DM:4M;
+
   // "l2" configuration 
-  ac_mem     MEM:4M;
+//  ac_mem     MEM:4M;
 //  ac_icache  IC("2w", 512, 4, "random", "wt", "wal");
 //  ac_dcache  DM("fully", 128, 2, "lru", "wb", "wal");
 //  ac_cache   L2("dm", 1024, 8, "wt", "wal");
