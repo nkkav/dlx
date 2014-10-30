@@ -12,11 +12,15 @@
 +-------------------+----------------------------------------------------------+
 | **Website**       | http://www.nkavvadias.com                                |
 +-------------------+----------------------------------------------------------+
-| **Release Date**  | 23 October 2014                                          |
+| **Release Date**  | 30 October 2014                                          |
 +-------------------+----------------------------------------------------------+
-| **Version**       | 0.1.1                                                    |
+| **Version**       | 0.1.2                                                    |
 +-------------------+----------------------------------------------------------+
 | **Rev. history**  |                                                          |
++-------------------+----------------------------------------------------------+
+|        **v0.1.2** | 2014-10-23                                               |
+|                   |                                                          |
+|                   | Documentation corrections.                               |
 +-------------------+----------------------------------------------------------+
 |        **v0.1.1** | 2014-10-23                                               |
 |                   |                                                          |
@@ -91,37 +95,6 @@ This is the DLX ArchC (http://www.archc.org) functional model. This model has
 the system call emulation functions implemented, so it is a good idea to turn on 
 the ABI option.
 
-To use ``acsim``, the interpreted simulator::
-
-  $ acsim dlx.ac [-g -abi -gdb]       # (create the simulator)
-  $ make -f Makefile.archc            # (compile)
-  $ ./dlx.x --load=<file-path> [args] # (run an application)
-
-To use ``accsim``, the compiled simulator::
-
-  $ accsim dlx.ac <file-path>         # (create specialized simulator)
-  $ make -f Makefile.archc            # (compile)
-  $ ./dlx.x [args]                    # (run the application)
-
-The ``[args]`` are optional arguments for the application.
-
-There are two formats recognized for application <file-path>:
-
-- ELF binary matching ArchC specifications
-- hexadecimal text file for ArchC
-
-To use ``acasm``, the assembler generator::
-
-  $ asmgen.sh dlx.ac <assembler_name>
-
-for generating the assembler source files.
-
-Then, proceed to build it using the GNU autotools::
-
-  $ configure 
-  $ make all-gas
-  $ make install-gas
-
 
 2. File listing
 ===============
@@ -160,7 +133,7 @@ The ``dlx`` distribution includes the following files:
 +-----------------------+------------------------------------------------------+
 | dlx_syscall.cpp       | OS call emulation support for DLX.                   |
 +-----------------------+------------------------------------------------------+
-| dlx-isa.cpp           | Instruction behaviors.                               |
+| dlx_isa.cpp           | Instruction behaviors.                               |
 +-----------------------+------------------------------------------------------+
 | modifiers             | Instruction encoding and decoding modifiers.         |
 +-----------------------+------------------------------------------------------+
@@ -169,7 +142,55 @@ The ``dlx`` distribution includes the following files:
 +-----------------------+------------------------------------------------------+
 
 
-3. General observations
+3. Usage
+========
+
+To generate the interpreted simulator, the ``acsim`` executable is ran::
+
+  $ acsim dlx.ac [-g -abi -gdb]       # (create the simulator)
+  $ make -f Makefile.archc            # (compile)
+  $ ./dlx.x --load=<file-path> [args] # (run an application)
+
+To generate the compiled application simulator, the ``accsim`` executable is 
+ran::
+
+  $ accsim dlx.ac <file-path>         # (create specialized simulator)
+  $ make -f Makefile.archc            # (compile)
+  $ ./dlx.x [args]                    # (run the application)
+
+The ``[args]`` are optional arguments for the application.
+
+There are two formats recognized for application <file-path>:
+
+- ELF binary matching ArchC specifications
+- hexadecimal text file for ArchC
+
+In order to generate the binary utilities port (``binutils`` port), the 
+``acbingen.sh`` driver script must be used. This should be called as follows::
+
+  $ acbingen.sh -adlx -i`pwd`/../dlx-tools/ dlx.ac
+
+for generating the ``binutils`` port executables. This includes the following 
+tools:
+
+- ``addr2line``
+- ``ar``
+- ``as``
+- ``c++filt``
+- ``gdb`` (the GDB port is also generated in the same directory)
+- ``gdbtui`` 
+- ``ld``
+- ``nm``
+- ``objcopy``
+- ``objdump``
+- ``ranlib``
+- ``readelf``
+- ``size``
+- ``strings``
+- ``strip``
+
+
+4. General observations
 =======================
 
 1. Some non-classical DLX instructions (available in the DLX binutils target)

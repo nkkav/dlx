@@ -361,13 +361,18 @@ ul.auto-toc {
 <td><a class="reference external" href="http://www.nkavvadias.com">http://www.nkavvadias.com</a></td>
 </tr>
 <tr><td><strong>Release Date</strong></td>
-<td>23 October 2014</td>
+<td>30 October 2014</td>
 </tr>
 <tr><td><strong>Version</strong></td>
-<td>0.1.1</td>
+<td>0.1.2</td>
 </tr>
 <tr><td><strong>Rev. history</strong></td>
 <td>&nbsp;</td>
+</tr>
+<tr><td><strong>v0.1.2</strong></td>
+<td><p class="first">2014-10-23</p>
+<p class="last">Documentation corrections.</p>
+</td>
 </tr>
 <tr><td><strong>v0.1.1</strong></td>
 <td><p class="first">2014-10-23</p>
@@ -459,35 +464,6 @@ pseudo-instructions)</li>
 <p>This is the DLX ArchC (<a class="reference external" href="http://www.archc.org">http://www.archc.org</a>) functional model. This model has
 the system call emulation functions implemented, so it is a good idea to turn on
 the ABI option.</p>
-<p>To use <tt class="docutils literal">acsim</tt>, the interpreted simulator:</p>
-<pre class="literal-block">
-$ acsim dlx.ac [-g -abi -gdb]       # (create the simulator)
-$ make -f Makefile.archc            # (compile)
-$ ./dlx.x --load=&lt;file-path&gt; [args] # (run an application)
-</pre>
-<p>To use <tt class="docutils literal">accsim</tt>, the compiled simulator:</p>
-<pre class="literal-block">
-$ accsim dlx.ac &lt;file-path&gt;         # (create specialized simulator)
-$ make -f Makefile.archc            # (compile)
-$ ./dlx.x [args]                    # (run the application)
-</pre>
-<p>The <tt class="docutils literal">[args]</tt> are optional arguments for the application.</p>
-<p>There are two formats recognized for application &lt;file-path&gt;:</p>
-<ul class="simple">
-<li>ELF binary matching ArchC specifications</li>
-<li>hexadecimal text file for ArchC</li>
-</ul>
-<p>To use <tt class="docutils literal">acasm</tt>, the assembler generator:</p>
-<pre class="literal-block">
-$ asmgen.sh dlx.ac &lt;assembler_name&gt;
-</pre>
-<p>for generating the assembler source files.</p>
-<p>Then, proceed to build it using the GNU autotools:</p>
-<pre class="literal-block">
-$ configure
-$ make all-gas
-$ make install-gas
-</pre>
 </div>
 <div class="section" id="file-listing">
 <h1>2. File listing</h1>
@@ -544,7 +520,7 @@ archc-1.5.1.bp2).</td>
 <tr><td>dlx_syscall.cpp</td>
 <td>OS call emulation support for DLX.</td>
 </tr>
-<tr><td>dlx-isa.cpp</td>
+<tr><td>dlx_isa.cpp</td>
 <td>Instruction behaviors.</td>
 </tr>
 <tr><td>modifiers</td>
@@ -557,8 +533,54 @@ of the documentation (README).</td>
 </tbody>
 </table>
 </div>
+<div class="section" id="usage">
+<h1>3. Usage</h1>
+<p>To generate the interpreted simulator, the <tt class="docutils literal">acsim</tt> executable is ran:</p>
+<pre class="literal-block">
+$ acsim dlx.ac [-g -abi -gdb]       # (create the simulator)
+$ make -f Makefile.archc            # (compile)
+$ ./dlx.x --load=&lt;file-path&gt; [args] # (run an application)
+</pre>
+<p>To generate the compiled application simulator, the <tt class="docutils literal">accsim</tt> executable is
+ran:</p>
+<pre class="literal-block">
+$ accsim dlx.ac &lt;file-path&gt;         # (create specialized simulator)
+$ make -f Makefile.archc            # (compile)
+$ ./dlx.x [args]                    # (run the application)
+</pre>
+<p>The <tt class="docutils literal">[args]</tt> are optional arguments for the application.</p>
+<p>There are two formats recognized for application &lt;file-path&gt;:</p>
+<ul class="simple">
+<li>ELF binary matching ArchC specifications</li>
+<li>hexadecimal text file for ArchC</li>
+</ul>
+<p>In order to generate the binary utilities port (<tt class="docutils literal">binutils</tt> port), the
+<tt class="docutils literal">acbingen.sh</tt> driver script must be used. This should be called as follows:</p>
+<pre class="literal-block">
+$ acbingen.sh -adlx -i`pwd`/../dlx-tools/ dlx.ac
+</pre>
+<p>for generating the <tt class="docutils literal">binutils</tt> port executables. This includes the following
+tools:</p>
+<ul class="simple">
+<li><tt class="docutils literal">addr2line</tt></li>
+<li><tt class="docutils literal">ar</tt></li>
+<li><tt class="docutils literal">as</tt></li>
+<li><tt class="docutils literal"><span class="pre">c++filt</span></tt></li>
+<li><tt class="docutils literal">gdb</tt> (the GDB port is also generated in the same directory)</li>
+<li><tt class="docutils literal">gdbtui</tt></li>
+<li><tt class="docutils literal">ld</tt></li>
+<li><tt class="docutils literal">nm</tt></li>
+<li><tt class="docutils literal">objcopy</tt></li>
+<li><tt class="docutils literal">objdump</tt></li>
+<li><tt class="docutils literal">ranlib</tt></li>
+<li><tt class="docutils literal">readelf</tt></li>
+<li><tt class="docutils literal">size</tt></li>
+<li><tt class="docutils literal">strings</tt></li>
+<li><tt class="docutils literal">strip</tt></li>
+</ul>
+</div>
 <div class="section" id="general-observations">
-<h1>3. General observations</h1>
+<h1>4. General observations</h1>
 <ol class="arabic simple">
 <li>Some non-classical DLX instructions (available in the DLX binutils target)
 might be added in the future. These are:</li>
