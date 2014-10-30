@@ -1,5 +1,5 @@
 /***************************************************************/
-/*  File       : dlx_gdb_funcs.cpp
+/*  File       : dlx_syscall.cpp
  *  Description: OS call emulation support for DLX.
  *  Author     : Nikolaos Kavvadias <nikos@nkavvadias.com>
  *

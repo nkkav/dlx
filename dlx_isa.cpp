@@ -1,5 +1,5 @@
 /***************************************************************/
-/*  File       : dlx-isa.cpp
+/*  File       : dlx_isa.cpp
  *  Description: Instruction encodings and assembly formats.
  *  Author     : Nikolaos Kavvadias <nikos@nkavvadias.com>
  *
