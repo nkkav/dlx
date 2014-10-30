@@ -1,6 +1,6 @@
 /***************************************************************/
 /*  File       : dlx_isa.cpp
- *  Description: Instruction encodings and assembly formats.
+ *  Description: Instruction behaviors.
  *  Author     : Nikolaos Kavvadias <nikos@nkavvadias.com>
  *
  *  Copyright (C) 2005, 2006, 2007, 2008, 2009, 2010,
