@@ -3,20 +3,8 @@
  *  Description: OS call emulation support for DLX.
  *  Author     : Nikolaos Kavvadias <nikos@nkavvadias.com>
  *
- *  Copyright (C) 2005, 2006, 2007, 2008, 2009, 2010,
- *                2011, 2012, 2013, 2014 Nikolaos Kavvadias
- *
- *  Author affiliation:
- *    Dr. Nikolaos Kavvadias
- *    Independent Consultant -- Research Scientist
- *    Kornarou 12 Rd., Nea Ampliani,
- *    35100 Lamia, Greece
- *                                                             
- *  Contact information for the ArchC team:                     
- *    The ArchC Team                                              
- *    Computer Systems Laboratory (LSC)                           
- *    IC-UNICAMP                                                  
- *    http://www.lsc.ic.unicamp.br                                
+ *  Copyright (C) Nikolaos Kavvadias 2005, 2006, 2007, 2008, 
+ *                2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016 
  */
 /***************************************************************/
 
